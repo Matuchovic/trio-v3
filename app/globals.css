@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink:     #070300;
+  --ink2:    #120800;
+  --cream:   #FBF5EB;
+  --sand:    #F0E6D3;
+  --caramel: #C4752A;
+  --caramel2:#E8943A;
+  --gold:    #D4AF37;
+  --choco:   #3D1F0D;
+  --berry:   #D4406A;
+  --pista:   #4A9E6A;
+}
+
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: 'Syne', system-ui, sans-serif;
+  background: var(--ink);
+  color: var(--cream);
+  overflow-x: hidden;
+  cursor: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--caramel); color: var(--ink); }
+::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: var(--caramel); }
+
+/* Cursor */
+.cur-dot { position:fixed; pointer-events:none; z-index:9999; width:7px; height:7px; background:var(--caramel); border-radius:50%; transform:translate(-50%,-50%); }
+.cur-ring { position:fixed; pointer-events:none; z-index:9998; width:36px; height:36px; border-radius:50%; border:1px solid rgba(196,117,42,0.55); transform:translate(-50%,-50%); transition:width 0.4s cubic-bezier(.23,1,.32,1), height 0.4s cubic-bezier(.23,1,.32,1), opacity 0.3s; }
+.cur-ring.big { width:64px !important; height:64px !important; opacity:0.3 !important; }
+
+/* Grain */
+body::after { content:''; position:fixed; inset:0; pointer-events:none; z-index:9000; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='.048'/%3E%3C/svg%3E"); opacity:0.55; mix-blend-mode:overlay; }
+
+/* Glass */
+.glass { background:rgba(251,245,235,0.05); backdrop-filter:blur(20px) saturate(160%); border:1px solid rgba(212,175,55,0.18); }
+.glass-light { background:rgba(251,245,235,0.88); backdrop-filter:blur(32px); border:1px solid rgba(212,175,55,0.2); }
+
+/* Typography */
+.display { font-family:'Playfair Display',Georgia,serif; line-height:0.93; letter-spacing:-0.02em; }
+.mono { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.3em; text-transform:uppercase; }
+
+/* Gradient text */
+.grad { background:linear-gradient(135deg, var(--caramel) 0%, var(--gold) 45%, var(--caramel2) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+/* Gold button */
+.btn-g { background:linear-gradient(90deg,var(--caramel),var(--gold),var(--caramel2),var(--caramel)); background-size:300% auto; animation:shimmer 3s linear infinite; color:var(--ink); font-weight:800; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; border:none; cursor:none; border-radius:100px; padding:14px 36px; display:inline-block; text-decoration:none; }
+
+/* Layout */
+.wrap { max-width:1300px; margin:0 auto; padding:0 clamp(1.5rem,5vw,4rem); }
+.section { padding:clamp(90px,11vw,150px) 0; }
+
+/* Hero background */
+.hero-bg {
+  background:
+    radial-gradient(ellipse at 28% 45%, rgba(196,117,42,0.13) 0%, transparent 60%),
+    radial-gradient(ellipse at 75% 22%, rgba(212,64,106,0.08) 0%, transparent 48%),
+    radial-gradient(ellipse at 52% 78%, rgba(74,158,106,0.06) 0%, transparent 42%),
+    linear-gradient(170deg, #070300 0%, #150900 35%, #221206 65%, #070300 100%);
+}
+
+/* Animations */
+@keyframes shimmer { 0%{background-position:-200% center} 100%{background-position:200% center} }
+@keyframes float   { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-16px)} }
+@keyframes float2  { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-10px) rotate(2deg)} }
+@keyframes spin-s  { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+@keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+@keyframes ping-r  { 0%{transform:scale(1);opacity:0.7} 100%{transform:scale(2.4);opacity:0} }
+
+.float  { animation:float  4s ease-in-out infinite; }
+.float2 { animation:float2 5.5s ease-in-out infinite 0.7s; }
+.spin-s { animation:spin-s 28s linear infinite; }
