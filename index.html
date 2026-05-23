@@ -44,7 +44,16 @@ nav.sc{background:rgba(255,240,246,.92);backdrop-filter:blur(20px);box-shadow:0 
 .nav-actions{display:flex;align-items:center;gap:12px;}
 .nav-btn{background:linear-gradient(135deg,var(--pink2),var(--pink3));color:white;font-size:13px;font-weight:700;padding:10px 24px;border-radius:100px;border:none;cursor:none;text-decoration:none;box-shadow:0 4px 20px rgba(236,72,153,.4);transition:transform .3s,box-shadow .3s;}
 .nav-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(236,72,153,.5);}
-/* Touch optimizations */
+/* Parallax — smooth transitions on non-touch */
+#px-mascot, #px-chip1, #px-chip2, #px-chip3, #px-chip4, #px-rating, #px-bg-text {
+  will-change: transform;
+  transition: transform 0.08s linear;
+}
+@media(max-width:900px){
+  #px-mascot, #px-chip1, #px-chip2, #px-chip3, #px-chip4, #px-rating, #px-bg-text {
+    transition: none;
+  }
+}
 a,button{touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
 input,textarea{font-size:16px !important;}
 .hamburger{min-width:44px;min-height:44px;display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:10px;align-items:center;justify-content:center;touch-action:manipulation;}
@@ -549,14 +558,14 @@ footer{background:var(--choco);padding:60px clamp(1.5rem,5vw,4rem) 30px;}
     </div>
 
     <!-- RIGHT — Visual -->
-    <div class="hero-visual">
+    <div class="hero-visual" id="hero-visual">
       <div class="hero-ice-cream-wrap">
-        <div class="ice-big-text">ICE CREAM</div>
-        <div class="flavor-chip fc1"><span class="fc-dot" style="background:#5C2E0A;"></span> Belgická čokoláda</div>
-        <div class="flavor-chip fc2"><span class="fc-dot" style="background:#C4901A;"></span> Vanilka</div>
-        <div class="flavor-chip fc3"><span class="fc-dot" style="background:#C73D57;"></span> Čerstvá jahoda</div>
-        <div class="flavor-chip fc4"><span class="fc-dot" style="background:#4A9E6A;"></span> Pistácie</div>
-        <svg class="ice-cream-main" viewBox="0 0 380 480" xmlns="http://www.w3.org/2000/svg" style="width:400px;top:45%;filter:drop-shadow(0 20px 50px rgba(236,72,153,0.3));">
+        <div class="ice-big-text" id="px-bg-text">ICE CREAM</div>
+        <div class="flavor-chip fc1" id="px-chip1"><span class="fc-dot" style="background:#5C2E0A;"></span> Belgická čokoláda</div>
+        <div class="flavor-chip fc2" id="px-chip2"><span class="fc-dot" style="background:#C4901A;"></span> Vanilka</div>
+        <div class="flavor-chip fc3" id="px-chip3"><span class="fc-dot" style="background:#C73D57;"></span> Čerstvá jahoda</div>
+        <div class="flavor-chip fc4" id="px-chip4"><span class="fc-dot" style="background:#4A9E6A;"></span> Pistácie</div>
+        <svg class="ice-cream-main" id="px-mascot" viewBox="0 0 380 480" xmlns="http://www.w3.org/2000/svg" style="width:400px;top:45%;filter:drop-shadow(0 20px 50px rgba(236,72,153,0.3));">
           <defs>
             <radialGradient id="mf" cx="45%" cy="40%" r="55%"><stop offset="0%" stop-color="#FFE4B5"/><stop offset="100%" stop-color="#F4B870"/></radialGradient>
             <radialGradient id="mbg" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#FFE4F0"/><stop offset="100%" stop-color="#FFCCE3"/></radialGradient>
@@ -625,7 +634,7 @@ footer{background:var(--choco);padding:60px clamp(1.5rem,5vw,4rem) 30px;}
           <ellipse cx="326" cy="262" rx="18" ry="26" fill="#F4B870" transform="rotate(30 326 262)"/>
           <path d="M124 240 Q118 258 120 278" stroke="#F4B870" stroke-width="7" stroke-linecap="round" fill="none"/>
         </svg>
-        <div class="rating-card">
+        <div class="rating-card" id="px-rating">
           <div class="rating-card-title">Zákazníci říkají</div>
           <div class="rating-card-score">4.9 / 5</div>
           <div class="rating-card-stars">★★★★★</div>
@@ -1195,6 +1204,79 @@ if (prefersReduced) {
   }, { threshold: .06, rootMargin: '0px 0px -40px 0px' });
   setTimeout(() => { document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(el => obs.observe(el)); }, 200);
 }
+
+// ── PARALLAX CURSOR EFEKT ──
+(function() {
+  var heroVisual = document.getElementById('hero-visual');
+  if (!heroVisual) return;
+
+  var layers = [
+    { id:'px-bg-text',  sx:-0.012, sy:-0.008 },
+    { id:'px-mascot',   sx: 0.022, sy: 0.018 },
+    { id:'px-chip1',    sx:-0.038, sy:-0.028 },
+    { id:'px-chip2',    sx: 0.044, sy: 0.032 },
+    { id:'px-chip3',    sx:-0.034, sy: 0.040 },
+    { id:'px-chip4',    sx: 0.050, sy:-0.036 },
+    { id:'px-rating',   sx: 0.028, sy: 0.045 },
+  ].map(function(l){ l.el=document.getElementById(l.id); l.cx=0; l.cy=0; l.tx=0; l.ty=0; return l; });
+
+  var active = false;
+  var ease = 0.09;
+
+  function setTarget(dx, dy) {
+    layers.forEach(function(l) {
+      l.tx = dx * l.sx;
+      l.ty = dy * l.sy;
+    });
+    if (!active) { active = true; tick(); }
+  }
+
+  function tick() {
+    var done = true;
+    layers.forEach(function(l) {
+      if (!l.el) return;
+      l.cx += (l.tx - l.cx) * ease;
+      l.cy += (l.ty - l.cy) * ease;
+      var rx = l.cx.toFixed(2), ry = l.cy.toFixed(2);
+      var rot = (l.id.indexOf('chip') > -1) ? ' rotate(' + (l.cx * 0.04).toFixed(2) + 'deg)' : '';
+      if (l.id === 'px-mascot') {
+        l.el.style.transform = 'translate(calc(-50% + '+rx+'px), calc(-52% + '+ry+'px))';
+      } else {
+        l.el.style.transform = 'translate('+rx+'px,'+ry+'px)'+rot;
+      }
+      if (Math.abs(l.tx-l.cx)>0.1 || Math.abs(l.ty-l.cy)>0.1) done=false;
+    });
+    if (!done) requestAnimationFrame(tick); else active=false;
+  }
+
+  var mascotEl = document.getElementById('px-mascot');
+  var glowT;
+
+  document.addEventListener('mousemove', function(e) {
+    var r = heroVisual.getBoundingClientRect();
+    var inside = e.clientX>=r.left && e.clientX<=r.right && e.clientY>=r.top && e.clientY<=r.bottom;
+    if (inside) {
+      setTarget(e.clientX-(r.left+r.width/2), e.clientY-(r.top+r.height/2));
+      if (mascotEl) mascotEl.style.filter='drop-shadow(0 24px 60px rgba(236,72,153,.55))';
+      clearTimeout(glowT);
+      glowT=setTimeout(function(){if(mascotEl)mascotEl.style.filter='drop-shadow(0 20px 50px rgba(236,72,153,.3))';},500);
+    } else {
+      setTarget(0,0);
+    }
+  }, {passive:true});
+
+  heroVisual.addEventListener('mouseleave', function(){ setTarget(0,0); });
+
+  // Gyro na mobile
+  if (window.DeviceOrientationEvent) {
+    window.addEventListener('deviceorientation', function(e) {
+      var b=Math.min(Math.max(e.beta||0,-20),20);
+      var g=Math.min(Math.max(e.gamma||0,-20),20);
+      layers.forEach(function(l){ l.tx=g*l.sx*80; l.ty=b*l.sy*80; });
+      if(!active){active=true;tick();}
+    },{passive:true});
+  }
+})();
 
 // PERFORMANCE — pause animations when tab hidden
 document.addEventListener('visibilitychange', () => {
