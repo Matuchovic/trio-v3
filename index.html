@@ -2,7 +2,10 @@
 <html lang="cs">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="theme-color" content="#FFE4F0"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
 <title>TRIO — Točená zmrzlina · Mladá Boleslav</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
@@ -41,8 +44,11 @@ nav.sc{background:rgba(255,240,246,.92);backdrop-filter:blur(20px);box-shadow:0 
 .nav-actions{display:flex;align-items:center;gap:12px;}
 .nav-btn{background:linear-gradient(135deg,var(--pink2),var(--pink3));color:white;font-size:13px;font-weight:700;padding:10px 24px;border-radius:100px;border:none;cursor:none;text-decoration:none;box-shadow:0 4px 20px rgba(236,72,153,.4);transition:transform .3s,box-shadow .3s;}
 .nav-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(236,72,153,.5);}
-.hamburger{display:none;flex-direction:column;gap:4px;cursor:none;background:none;border:none;padding:4px;}
-.hamburger span{display:block;width:22px;height:2px;background:var(--choco);border-radius:2px;transition:.3s;}
+/* Touch optimizations */
+a,button{touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
+input,textarea{font-size:16px !important;}
+.hamburger{min-width:44px;min-height:44px;display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:10px;align-items:center;justify-content:center;touch-action:manipulation;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--choco);border-radius:2px;transition:all .3s;pointer-events:none;}
 
 /* HERO */
 #hero{min-height:100svh;position:relative;overflow:hidden;display:flex;align-items:center;background:linear-gradient(135deg,#FFE4F0 0%,#FFF0F6 40%,#FFE4F0 100%);}
@@ -263,16 +269,165 @@ footer{background:var(--choco);padding:60px clamp(1.5rem,5vw,4rem) 30px;}
 .rv-r{opacity:0;transform:translateX(36px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);}
 .rv-r.vis{opacity:1;transform:translateX(0);}
 
+/* ── TABLET ── */
 @media(max-width:900px){
-  .hero-inner,.about-grid,.contact-grid,.footer-grid{grid-template-columns:1fr;}
-  .hero-visual{display:none;}
+  /* Cursor off on touch */
+  body{cursor:auto;}
+  #cd,#cr{display:none;}
+
+  /* Nav */
   .nav-links,.nav-btn{display:none;}
   .hamburger{display:flex;}
+  nav{padding:14px 1.5rem;}
+
+  /* Hero */
+  .hero-inner{grid-template-columns:1fr;padding-top:90px;padding-bottom:40px;gap:0;}
+  .hero-visual{display:flex;justify-content:center;margin-top:20px;}
+  .hero-ice-cream-wrap{width:300px;height:340px;}
+  .ice-cream-main{width:260px !important;}
+  .ice-big-text{font-size:clamp(60px,18vw,100px);}
+  .flavor-chip{font-size:11px;padding:7px 12px;}
+  .fc1{top:0;left:0;}
+  .fc2{top:0;right:0;}
+  .fc3{bottom:10%;left:-5%;}
+  .fc4{bottom:15%;right:-5%;}
+  .rating-card{bottom:0;right:0;}
+
+  /* Hero text */
+  .hero-title{font-size:clamp(46px,12vw,68px);}
+  .hero-desc{font-size:14px;max-width:100%;}
+  .hero-ctas{gap:10px;}
+  .hero-social-proof{flex-wrap:wrap;}
+  .hero-stats{grid-template-columns:repeat(2,1fr);gap:12px;}
+
+  /* Sections */
+  .section-header{margin-bottom:40px;}
+  .section-title{font-size:clamp(32px,8vw,50px);}
   .flavors-grid{grid-template-columns:1fr;}
-  .footer-grid{grid-template-columns:1fr;}
+  .flavors-grid .flavor-card{max-width:480px;margin:0 auto;width:100%;}
+
+  /* Menu */
+  .menu-tabs{justify-content:flex-start;}
+
+  /* About */
+  .about-grid{grid-template-columns:1fr;gap:40px;}
+  .about-year-big{font-size:clamp(70px,20vw,130px);text-align:center;}
+  .about-cards{grid-template-columns:repeat(2,1fr);}
+
+  /* Contact */
+  .contact-grid{grid-template-columns:1fr;}
+
+  /* Footer */
+  .footer-grid{grid-template-columns:1fr;gap:36px;}
+
+  /* Banner */
+  .bn-right{display:none;}
+  .bn-left{padding:32px 28px;}
+  .bn-title{font-size:clamp(32px,9vw,48px);}
 }
+
+/* ── MOBILE ── */
 @media(max-width:600px){
-  .about-cards{grid-template-columns:1fr 1fr;}
+  /* Nav */
+  nav{padding:12px 1.2rem;}
+  .nav-logo-text{font-size:18px;}
+
+  /* Hero */
+  .hero-inner{padding:80px 1.2rem 30px;}
+  .hero-badge{font-size:10px;padding:7px 14px;}
+  .hero-title{font-size:clamp(38px,11vw,56px);line-height:.9;}
+  .hero-small{font-size:13px;}
+  .hero-desc{font-size:13px;margin-bottom:24px;}
+  .cta-primary,.cta-secondary{font-size:13px;padding:13px 24px;}
+  .hero-ctas{gap:8px;margin-bottom:28px;}
+  .hero-social-proof{gap:10px;}
+  .hero-proof-text{font-size:12px;}
+  .hero-visual{margin-top:10px;}
+  .hero-ice-cream-wrap{width:260px;height:300px;}
+  .ice-cream-main{width:220px !important;}
+  .flavor-chip{font-size:10px;padding:6px 10px;gap:5px;}
+  .rating-card{padding:10px 14px;min-width:130px;}
+  .rating-card-score{font-size:22px;}
+
+  /* Stats */
+  .hero-stats{grid-template-columns:repeat(2,1fr);gap:8px;padding-top:24px;margin-top:20px;}
+  .hero-stat-n{font-size:22px;}
+  .hero-stat-l{font-size:8px;}
+
+  /* Section spacing */
+  #prichute,#menu,#o-nas,#kontakt,#akce{padding:60px 0;}
+
+  /* Section headers */
+  .section-header{padding:0 1.2rem;margin-bottom:32px;}
+  .section-title{font-size:clamp(28px,9vw,42px);}
+  .section-desc{font-size:14px;}
+
+  /* Flavor cards */
+  .flavors-grid{padding:0 1.2rem;}
+  .flavor-card-top{min-height:180px;}
+  .flavor-card-icon{font-size:56px;}
+  .flavor-card-name{font-size:20px;}
+  .flavor-price{font-size:28px;}
+
+  /* Menu */
+  .menu-inner{padding:0 1.2rem;}
+  .menu-tabs{gap:6px;margin-bottom:28px;}
+  .menu-tab{font-size:12px;padding:8px 16px;}
+  .menu-row{padding:14px 18px;border-radius:14px;}
+  .menu-row-name{font-size:14px;}
+  .menu-row-price{font-size:18px;}
+  .menu-row-badge{font-size:8px;padding:3px 8px;margin-right:8px;}
+
+  /* About */
+  .about-inner{padding:0 1.2rem;}
+  .about-title{font-size:clamp(28px,9vw,42px);}
+  .about-cards{gap:10px;}
+  .about-card{padding:16px;}
+  .about-card-n{font-size:26px;}
+  .timeline li{gap:12px;}
+  .timeline-dot{width:32px;height:32px;font-size:10px;flex-shrink:0;}
+
+  /* Contact */
+  .contact-inner{padding:0 1.2rem;}
+  .contact-title{font-size:clamp(32px,10vw,52px);}
+  .hours-row{padding:12px 18px;flex-wrap:wrap;gap:6px;}
+  .hours-day{font-size:13px;}
+  .hours-time{font-size:14px;}
+  .addr-card{padding:20px;}
+  .addr-name{font-size:20px;}
+  .contact-form{padding:24px 20px;}
+  .form-title{font-size:22px;}
+  .socials{grid-template-columns:1fr 1fr;}
+  .socials a:last-child{grid-column:span 2;}
+
+  /* Banner */
+  .bn-left{padding:28px 24px;}
+  .bn-title{font-size:clamp(28px,9vw,40px);}
+  .bn-desc{font-size:13px;}
+  .bn-cta{font-size:13px;padding:13px 24px;margin-bottom:14px;}
+  .bn-code{padding:10px 14px;}
+  .bn-countdown{gap:8px;}
+  .bn-cnt-num{font-size:22px;min-width:48px;padding:8px 10px;}
+
+  /* Footer */
+  footer{padding:50px 1.2rem 28px;}
+  .footer-logo{font-size:24px;}
+  .footer-bottom{flex-direction:column;gap:12px;text-align:center;}
+  .footer-legal{gap:16px;}
+
+  /* Wave */
+  .wave svg{height:40px;}
+}
+
+/* ── SMALL MOBILE ── */
+@media(max-width:380px){
+  .hero-title{font-size:36px;}
+  .cta-primary,.cta-secondary{padding:12px 20px;font-size:12px;}
+  .hero-ctas{flex-direction:column;align-items:flex-start;}
+  .flavor-card-footer{flex-direction:column;align-items:flex-start;gap:12px;}
+  .flavor-add-btn{width:100%;text-align:center;}
+  .menu-row{flex-wrap:wrap;gap:8px;}
+  .menu-row-price{margin-left:0;}
 }
 </style>
 </head>
@@ -350,7 +505,7 @@ footer{background:var(--choco);padding:60px clamp(1.5rem,5vw,4rem) 30px;}
   <a href="#menu" onclick="toggleMob()" style="font-family:'Playfair Display',serif;font-size:48px;font-weight:900;font-style:italic;color:white;text-decoration:none;margin-bottom:20px;">Menu</a>
   <a href="#o-nas" onclick="toggleMob()" style="font-family:'Playfair Display',serif;font-size:48px;font-weight:900;font-style:italic;color:white;text-decoration:none;margin-bottom:20px;">O nás</a>
   <a href="#kontakt" onclick="toggleMob()" style="font-family:'Playfair Display',serif;font-size:48px;font-weight:900;font-style:italic;color:white;text-decoration:none;">Kontakt</a>
-  <button onclick="toggleMob()" style="position:absolute;top:20px;right:24px;background:none;border:none;cursor:none;font-size:32px;color:white;">✕</button>
+  <button onclick="toggleMob()" style="position:absolute;top:20px;right:24px;background:none;border:none;cursor:pointer;font-size:32px;color:white;padding:8px;line-height:1;touch-action:manipulation;">✕</button>
 </div>
 
 <!-- HERO -->
@@ -767,31 +922,99 @@ for(let i=0;i<18;i++){
   drops.appendChild(d);
 }
 
-// CURSOR
-const cd=document.getElementById('cd'),cr=document.getElementById('cr');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{
-  mx=e.clientX;my=e.clientY;
-  cd.style.left=mx+'px';cd.style.top=my+'px';
-  const h=e.target.closest('a,button');
-  cr.style.width=h?'56px':'38px';cr.style.height=h?'56px':'38px';cr.style.opacity=h?'.35':'1';
-  cr.style.borderColor=h?'#DB2777':'#EC4899';
+// TOUCH DETECTION — disable cursor & hover effects on touch devices
+var isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+if (isTouch) {
+  document.body.style.cursor = 'auto';
+  document.getElementById('cd').style.display = 'none';
+  document.getElementById('cr').style.display = 'none';
+} else {
+  // CURSOR — desktop only
+  const cd = document.getElementById('cd'), cr = document.getElementById('cr');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove', e => {
+    mx=e.clientX; my=e.clientY;
+    cd.style.left=mx+'px'; cd.style.top=my+'px';
+    const h = e.target.closest('a,button');
+    cr.style.width=h?'56px':'38px'; cr.style.height=h?'56px':'38px';
+    cr.style.opacity=h?'.35':'1'; cr.style.borderColor=h?'#DB2777':'#EC4899';
+  });
+  (function t(){ rx+=(mx-rx)*.1; ry+=(my-ry)*.1; cr.style.left=rx+'px'; cr.style.top=ry+'px'; requestAnimationFrame(t); })();
+}
+
+// NAVBAR scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('sc', scrollY > 60), { passive: true });
+
+// HAMBURGER — with body lock
+var mobOpen = false;
+function toggleMob() {
+  mobOpen = !mobOpen;
+  const m = document.getElementById('mob-menu');
+  m.style.display = mobOpen ? 'flex' : 'none';
+  document.body.style.overflow = mobOpen ? 'hidden' : '';
+  // Animate hamburger bars
+  const bars = document.querySelectorAll('.hamburger span');
+  if (mobOpen) {
+    bars[0].style.transform = 'rotate(45deg) translate(4px,4px)';
+    bars[1].style.opacity = '0';
+    bars[2].style.transform = 'rotate(-45deg) translate(4px,-4px)';
+  } else {
+    bars[0].style.transform = ''; bars[1].style.opacity = '1'; bars[2].style.transform = '';
+  }
+}
+
+// Close mob menu on outside click
+document.getElementById('mob-menu').addEventListener('click', function(e) {
+  if (e.target === this) toggleMob();
 });
-(function t(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(t);})();
 
-// NAVBAR
-const nav=document.getElementById('nav');
-window.addEventListener('scroll',()=>nav.classList.toggle('sc',scrollY>60));
+// SMOOTH SCROLL for anchor links on mobile
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      if (mobOpen) toggleMob();
+      setTimeout(() => {
+        const top = target.getBoundingClientRect().top + window.scrollY - 70;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }, mobOpen ? 350 : 0);
+    }
+  });
+});
 
-// HAMBURGER
-function toggleMob(){const m=document.getElementById('mob-menu');m.style.display=m.style.display==='flex'?'none':'flex';}
+// TOUCH — swipe to close mobile menu
+var touchStartX = 0;
+document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+document.addEventListener('touchend', e => {
+  if (mobOpen && e.changedTouches[0].clientX - touchStartX > 60) toggleMob();
+}, { passive: true });
 
 // FORM
-function submitForm(e){e.preventDefault();document.getElementById('form-inner').style.display='none';document.getElementById('form-success').style.display='block';}
+function submitForm(e) {
+  e.preventDefault();
+  document.getElementById('form-inner').style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+}
 
-// REVEAL
-const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');});},{threshold:.08,rootMargin:'0px 0px -50px 0px'});
-setTimeout(()=>{document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(el=>obs.observe(el));},300);
+// REVEAL — with reduced motion support
+var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (prefersReduced) {
+  document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(el => el.classList.add('vis'));
+} else {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+  }, { threshold: .06, rootMargin: '0px 0px -40px 0px' });
+  setTimeout(() => { document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(el => obs.observe(el)); }, 200);
+}
+
+// PERFORMANCE — pause animations when tab hidden
+document.addEventListener('visibilitychange', () => {
+  document.querySelectorAll('.bn-p,.drop,.bn-heart').forEach(el => {
+    el.style.animationPlayState = document.hidden ? 'paused' : 'running';
+  });
+});
 </script>
 </body>
 </html>
