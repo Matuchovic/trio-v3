@@ -429,6 +429,160 @@ footer{background:var(--choco);padding:60px clamp(1.5rem,5vw,4rem) 30px;}
   </div>
 </section>
 
+<!-- BANNER 1+1 -->
+<section id="akce" style="padding:60px clamp(1.5rem,5vw,4rem);background:linear-gradient(135deg,#FFE4F0,#FFF0F6);">
+<style>
+.banner-wrap{font-family:'Plus Jakarta Sans',sans-serif;background:linear-gradient(135deg,#FFD6E8 0%,#FFF0F6 35%,#FFD6E8 70%,#FECDD3 100%);background-size:300% 300%;animation:bn-bg 8s ease infinite;border-radius:28px;overflow:hidden;position:relative;max-width:1200px;margin:0 auto;box-shadow:0 20px 60px rgba(236,72,153,0.2);}
+@keyframes bn-bg{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.bn-blob{position:absolute;border-radius:50%;pointer-events:none;filter:blur(50px);}
+.bn-b1{width:280px;height:280px;background:rgba(244,114,182,0.35);top:-80px;left:-60px;animation:bnb1 5s ease-in-out infinite;}
+.bn-b2{width:220px;height:220px;background:rgba(251,207,232,0.5);top:20px;right:-30px;animation:bnb2 6s ease-in-out infinite 1s;}
+.bn-b3{width:180px;height:180px;background:rgba(253,164,175,0.3);bottom:-40px;left:38%;animation:bnb3 7s ease-in-out infinite 2s;}
+@keyframes bnb1{0%,100%{transform:scale(1) translate(0,0)}50%{transform:scale(1.15) translate(15px,10px)}}
+@keyframes bnb2{0%,100%{transform:scale(1)}50%{transform:scale(1.1) translate(-10px,12px)}}
+@keyframes bnb3{0%,100%{transform:scale(1)}50%{transform:scale(1.12) translate(8px,-8px)}}
+.bn-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.bn-p{position:absolute;border-radius:50%;background:rgba(236,72,153,0.15);animation:bnp linear infinite;}
+@keyframes bnp{0%{transform:translateY(110%) scale(0);opacity:0}15%{opacity:1}85%{opacity:.6}100%{transform:translateY(-80px) scale(1);opacity:0}}
+.bn-heart{position:absolute;pointer-events:none;animation:bnh ease-in-out infinite;font-size:16px;}
+@keyframes bnh{0%{transform:translateY(0) scale(1);opacity:.7}50%{transform:translateY(-20px) scale(1.2);opacity:1}100%{transform:translateY(-40px) scale(.8);opacity:0}}
+.bn-inner{position:relative;z-index:5;display:flex;align-items:center;min-height:360px;}
+.bn-left{flex:1;padding:44px 44px;}
+.bn-right{width:260px;flex-shrink:0;position:relative;align-self:stretch;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;}
+.bn-tag{display:inline-flex;align-items:center;gap:8px;background:white;border-radius:100px;padding:8px 18px;font-size:11px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:#DB2777;margin-bottom:20px;box-shadow:0 4px 20px rgba(236,72,153,.2);animation:bn-tag-b 2s ease-in-out infinite;}
+@keyframes bn-tag-b{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.bn-tag-dot{width:8px;height:8px;border-radius:50%;background:#4ADE80;animation:bn-gpulse 1.5s ease-in-out infinite;}
+@keyframes bn-gpulse{0%,100%{box-shadow:0 0 0 0 rgba(74,222,128,.5)}50%{box-shadow:0 0 0 6px rgba(74,222,128,0)}}
+.bn-title{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(40px,5vw,58px);line-height:.92;color:#5C2D1E;margin-bottom:14px;}
+.bn-pink{background:linear-gradient(135deg,#EC4899,#DB2777);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:italic;background-size:200% auto;animation:bn-shimmer 3s linear infinite;}
+@keyframes bn-shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+.bn-yellow{background:linear-gradient(135deg,#F59E0B,#EF4444);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:italic;}
+.bn-desc{font-size:15px;color:#9B6B7B;line-height:1.7;margin-bottom:24px;max-width:380px;}
+.bn-desc strong{color:#5C2D1E;font-weight:800;}
+.bn-cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#EC4899,#DB2777);color:white;font-size:14px;font-weight:800;letter-spacing:.04em;padding:15px 32px;border-radius:100px;border:none;cursor:pointer;box-shadow:0 8px 30px rgba(236,72,153,.45);transition:all .3s;position:relative;overflow:hidden;margin-bottom:18px;text-decoration:none;}
+.bn-cta:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 14px 40px rgba(236,72,153,.55);}
+.bn-cta::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);transform:translateX(-100%);animation:bn-cta-shine 2.5s ease-in-out infinite 1s;}
+@keyframes bn-cta-shine{0%{transform:translateX(-100%)}40%{transform:translateX(100%)}100%{transform:translateX(100%)}}
+.bn-code{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.7);backdrop-filter:blur(10px);border:1.5px dashed rgba(236,72,153,.3);border-radius:14px;padding:12px 16px;max-width:320px;margin-bottom:22px;}
+.bn-code-badge{background:linear-gradient(135deg,#FDE047,#FFA500);color:#7C2D12;font-size:12px;font-weight:900;padding:4px 12px;border-radius:8px;letter-spacing:.1em;margin-left:auto;animation:bn-badge-glow 2s ease-in-out infinite;}
+@keyframes bn-badge-glow{0%,100%{box-shadow:0 4px 12px rgba(253,224,71,.4)}50%{box-shadow:0 4px 24px rgba(253,224,71,.7)}}
+.bn-countdown{display:flex;gap:10px;align-items:center;}
+.bn-cnt-box{text-align:center;}
+.bn-cnt-num{display:block;background:white;border-radius:14px;padding:10px 14px;font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:#DB2777;min-width:56px;text-align:center;box-shadow:0 6px 20px rgba(236,72,153,.15);}
+.bn-cnt-label{font-size:9px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:#D4A0B8;margin-top:5px;}
+.bn-sep{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:rgba(219,39,119,.35);align-self:flex-start;margin-top:8px;animation:bn-sep-b 1s ease-in-out infinite;}
+@keyframes bn-sep-b{0%,100%{opacity:1}50%{opacity:.15}}
+.bn-ice{width:210px;animation:bn-ice-f 3.5s ease-in-out infinite;filter:drop-shadow(0 20px 30px rgba(236,72,153,.25));}
+@keyframes bn-ice-f{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-14px) rotate(2deg)}}
+.bn-badge-wrap{position:absolute;top:16px;left:4px;width:74px;height:74px;z-index:6;}
+.bn-badge-outer{position:absolute;inset:0;border-radius:50%;border:3px dashed rgba(219,39,119,.3);animation:bn-badge-spin 10s linear infinite;}
+@keyframes bn-badge-spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.bn-badge-inner{position:absolute;inset:6px;border-radius:50%;background:linear-gradient(135deg,#FDE047,#FFA500);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(253,224,71,.5);}
+.bn-b-num{font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:#7C2D12;line-height:1;}
+.bn-b-txt{font-size:8px;font-weight:900;color:#7C2D12;letter-spacing:.06em;}
+.bn-chip{position:absolute;background:white;border-radius:100px;padding:7px 14px;font-size:12px;font-weight:700;color:#5C2D1E;box-shadow:0 6px 20px rgba(0,0,0,.1);z-index:6;white-space:nowrap;}
+.bn-c1{top:26px;right:0;animation:bn-cf1 3s ease-in-out infinite;}
+.bn-c2{bottom:80px;right:-8px;animation:bn-cf2 3.5s ease-in-out infinite .6s;}
+@keyframes bn-cf1{0%,100%{transform:translateY(0) rotate(4deg)}50%{transform:translateY(-8px) rotate(4deg)}}
+@keyframes bn-cf2{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-6px) rotate(-3deg)}}
+@media(max-width:700px){.bn-right{display:none;}.bn-left{padding:32px 28px;}}
+</style>
+
+<div class="banner-wrap">
+  <div class="bn-blob bn-b1"></div>
+  <div class="bn-blob bn-b2"></div>
+  <div class="bn-blob bn-b3"></div>
+  <div class="bn-particles" id="bn-particles"></div>
+
+  <div class="bn-inner">
+    <div class="bn-left">
+      <div class="bn-tag"><span class="bn-tag-dot"></span>Limitovaná akce · Jen tento víkend</div>
+      <div class="bn-title">
+        Kup 1,<br>
+        dostaneš <span class="bn-pink">druhý</span><br>
+        <span class="bn-yellow">ZDARMA!</span>
+      </div>
+      <p class="bn-desc" style="margin-top:12px;">
+        <strong>Druhý kopeček zdarma</strong> ke každé objednávce.<br>
+        Belgická čokoláda · Vanilka · Jahoda.<br>
+        Denně čerstvé od roku 2009.
+      </p>
+      <a href="#kontakt" class="bn-cta">
+        Využít nabídku
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <div class="bn-code">
+        <span style="font-size:18px;">🎯</span>
+        <span style="font-size:12px;font-weight:700;color:#9B6B7B;">Promo kód při objednávce dortu</span>
+        <span class="bn-code-badge">TRIO2x</span>
+      </div>
+      <div class="bn-countdown">
+        <div class="bn-cnt-box"><span class="bn-cnt-num" id="bn-h">23</span><div class="bn-cnt-label">Hodin</div></div>
+        <div class="bn-sep">:</div>
+        <div class="bn-cnt-box"><span class="bn-cnt-num" id="bn-m">47</span><div class="bn-cnt-label">Minut</div></div>
+        <div class="bn-sep">:</div>
+        <div class="bn-cnt-box"><span class="bn-cnt-num" id="bn-s">30</span><div class="bn-cnt-label">Sekund</div></div>
+      </div>
+    </div>
+
+    <div class="bn-right">
+      <div class="bn-badge-wrap">
+        <div class="bn-badge-outer"></div>
+        <div class="bn-badge-inner">
+          <span class="bn-b-num">1+1</span>
+          <span class="bn-b-txt">ZDARMA</span>
+        </div>
+      </div>
+      <div class="bn-chip bn-c1">🍫 Čokoláda</div>
+      <div class="bn-chip bn-c2">🍓 Jahoda</div>
+      <svg class="bn-ice" viewBox="0 0 220 300" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="110" cy="292" rx="70" ry="10" fill="rgba(236,72,153,0.15)"/>
+        <path d="M65 178 L110 296 L155 178 Z" fill="#D2691E"/>
+        <path d="M68 178 L110 284 L152 178 Z" fill="#C4752A"/>
+        <line x1="72" y1="194" x2="148" y2="194" stroke="#A0522D" stroke-width="1" opacity="0.5"/>
+        <line x1="76" y1="216" x2="144" y2="216" stroke="#A0522D" stroke-width="1" opacity="0.5"/>
+        <line x1="81" y1="238" x2="139" y2="238" stroke="#A0522D" stroke-width="1" opacity="0.5"/>
+        <line x1="76" y1="186" x2="110" y2="292" stroke="#A0522D" stroke-width="1" opacity="0.35"/>
+        <line x1="100" y1="181" x2="128" y2="290" stroke="#A0522D" stroke-width="1" opacity="0.35"/>
+        <line x1="128" y1="182" x2="146" y2="270" stroke="#A0522D" stroke-width="1" opacity="0.35"/>
+        <ellipse cx="88" cy="154" rx="46" ry="44" fill="#3D1505"/>
+        <ellipse cx="88" cy="150" rx="40" ry="36" fill="#5C2E0A"/>
+        <ellipse cx="82" cy="140" rx="22" ry="16" fill="#7B4A20" opacity="0.5"/>
+        <ellipse cx="134" cy="148" rx="44" ry="42" fill="#B91C4A"/>
+        <ellipse cx="134" cy="144" rx="38" ry="34" fill="#EC4899"/>
+        <ellipse cx="128" cy="134" rx="20" ry="14" fill="#F9A8D4" opacity="0.6"/>
+        <ellipse cx="110" cy="106" rx="48" ry="46" fill="#C4901A"/>
+        <ellipse cx="110" cy="102" rx="42" ry="37" fill="#FBBF24"/>
+        <ellipse cx="104" cy="92" rx="24" ry="17" fill="#FDE68A" opacity="0.6"/>
+        <path d="M76 156 Q72 174 74 192" stroke="#3D1505" stroke-width="6" stroke-linecap="round" fill="none"/>
+        <path d="M148 152 Q152 170 150 188" stroke="#B91C4A" stroke-width="5" stroke-linecap="round" fill="none"/>
+        <circle cx="100" cy="90" r="6" fill="rgba(255,255,255,0.5)"/>
+        <circle cx="90" cy="102" r="4" fill="rgba(255,255,255,0.35)"/>
+        <circle cx="80" cy="138" r="4" fill="rgba(255,255,255,0.25)"/>
+        <circle cx="126" cy="132" r="4" fill="rgba(255,255,255,0.3)"/>
+        <ellipse cx="110" cy="66" rx="22" ry="20" fill="#EC4899"/>
+        <path d="M103 59 L110 46 L117 59 Z" fill="#16A34A"/>
+        <ellipse cx="110" cy="63" rx="15" ry="12" fill="#F9A8D4" opacity="0.7"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var bp=document.getElementById('bn-particles');
+  for(var i=0;i<20;i++){var el=document.createElement('div');el.className='bn-p';var s=Math.random()*12+5;el.style.cssText='left:'+Math.random()*100+'%;bottom:0;width:'+s+'px;height:'+s+'px;animation-duration:'+(Math.random()*5+4)+'s;animation-delay:'+Math.random()*7+'s;';bp.appendChild(el);}
+  var hpos=[[15,20],[40,15],[65,25],[80,18],[25,60],[55,55]];
+  var bw=document.querySelector('.banner-wrap');
+  hpos.forEach(function(pos){var h=document.createElement('div');h.className='bn-heart';h.style.cssText='left:'+pos[0]+'%;top:'+pos[1]+'%;animation-duration:'+(Math.random()*2+2)+'s;animation-delay:'+Math.random()*4+'s;color:rgba(236,72,153,'+(Math.random()*.3+.1)+');';h.textContent='♡';bw.appendChild(h);});
+  function pad(n){return String(n).padStart(2,'0');}
+  var end=new Date();end.setHours(end.getHours()+23);end.setMinutes(end.getMinutes()+47);end.setSeconds(end.getSeconds()+30);
+  function tick(){var now=new Date();var diff=Math.max(0,end-now);document.getElementById('bn-h').textContent=pad(Math.floor(diff/3600000));document.getElementById('bn-m').textContent=pad(Math.floor((diff%3600000)/60000));document.getElementById('bn-s').textContent=pad(Math.floor((diff%60000)/1000));if(diff>0)setTimeout(tick,1000);}
+  tick();
+})();
+</script>
+</section>
+
 <!-- WAVE -->
 <div class="wave" style="background:linear-gradient(135deg,#FFE4F0,#FFF0F6);">
   <svg viewBox="0 0 1440 60" fill="white" xmlns="http://www.w3.org/2000/svg">
